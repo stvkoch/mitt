@@ -28,6 +28,18 @@ export default function mitt(all: EventHandlerMap) {
 		on(type: string, handler: EventHandler) {
 			(all[type] || (all[type] = [])).push(handler);
 		},
+		
+		/**
+		 * reaplace all handler an event by handler for the given type.
+		 *
+		 * @param  {String} type    Type of event to listen for, or `"*"` for all events
+		 * @param  {Function} handler Function to call in response to given event
+		 * @return {Object} the `mitt` instance for chaining
+		 * @memberOf mitt
+		 */
+		smash(type: string, handler: EventHandler) {
+			(all[type] = []).push(handler);
+		},
 
 		/**
 		 * Remove an event handler for the given type.
